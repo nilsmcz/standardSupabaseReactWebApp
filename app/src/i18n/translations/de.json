@@ -11,6 +11,12 @@
   "login": "Anmelden",
   "login_failed": "Anmeldung fehlgeschlagen",
 
+  "forgot_password": "Passwort vergessen",
+  "reset_password": "Passwort zurücksetzen",
+  "password_reset": "Passwort zurückgesetzt",
+  "password_reset_failed": "Passwort zurücksetzen fehlgeschlagen",
+  "reset": "Zurücksetzen",
+
 
   "weak_password": "Das Passwort ist zu schwach",
   "validation_failed": "Validierung fehlgeschlagen",

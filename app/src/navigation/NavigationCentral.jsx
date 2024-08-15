@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import Login from '../screens/login/Login';
 import Register from '../screens/register/Register';
 import Home from '../screens/home/Home';
+import ForgotPassword from '../screens/forgotPassword/ForgotPassword';
 
 export default function NavigationCentral() {
 
@@ -24,6 +25,7 @@ export default function NavigationCentral() {
 
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/forgot-password" element={<ForgotPassword />} />
                         
                         <Route path="/*" element={<Login />} />
                     </>

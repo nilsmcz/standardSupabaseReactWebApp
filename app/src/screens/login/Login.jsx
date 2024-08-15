@@ -32,6 +32,10 @@ export default function Login() {
         navigate('/register');
     }
 
+    function handleForgotPassword() {
+        navigate('/forgot-password');
+    }
+
     return (
         <div style={styles.container}>
             <h1>{t('login')}</h1>
@@ -57,6 +61,8 @@ export default function Login() {
             <button onClick={handleLogin}>{t('login')}</button>
 
             <div onClick={()=>handleRegister()}>{t('register')}</div>
+
+            <div onClick={()=>handleForgotPassword()}>{t('forgot_password')}</div>
 
         </div>
     )

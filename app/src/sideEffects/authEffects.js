@@ -61,3 +61,22 @@ export async function logout() {
         throw error;
     }
 }
+
+/**
+ * Sends a password reset email to the specified email address using Supabase authentication.
+ *
+ * @param {string} email - The email address to send the password reset link to.
+ * @returns {Promise<Object>} A promise that resolves to the response data from Supabase if successful.
+ * @throws {Error} Throws an error if the password reset request fails or if there is an issue with Supabase.
+ */
+export async function sendPasswordResetEmail(email) {
+    try {
+        const { data, error } = await supabase.auth.resetPasswordForEmail(email);
+        if (error) {
+            throw error;
+        }
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
