@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { registerWithEmailPassword } from '../../sideEffects/authEffects';
+import { useTranslation } from 'react-i18next';
 
 export default function Register() {
+    const { t } = useTranslation();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,13 +24,13 @@ export default function Register() {
             const user = await registerWithEmailPassword(email, password);
             console.log("User registered", user);
         } catch (error) {
-            setErrorMessage(error.message);
+            setErrorMessage(error.message || "An unknown error occurred" );
         }
     }
 
     return (
         <div style={{ display: "flex", width: "100vw", height: "100vh", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
-            Register
+            {t('registration')}
 
             <input
                 type="text"
@@ -53,7 +55,7 @@ export default function Register() {
 
             {errorMessage}
 
-            <button onClick={() => register()}>Register</button>
+            <button onClick={() => register()}>{t('register')}</button>
 
         </div>
     )

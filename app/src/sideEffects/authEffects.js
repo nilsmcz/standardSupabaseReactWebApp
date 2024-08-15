@@ -8,6 +8,6 @@ export async function registerWithEmailPassword(email, password) {
         }
         return data;
     } catch (error) {
-        throw error || "An unknown error occurred";
+        throw error;
     }
 }
