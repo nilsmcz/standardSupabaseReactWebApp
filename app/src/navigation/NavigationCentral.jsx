@@ -18,8 +18,7 @@ export default function NavigationCentral() {
             <Routes>
                 {user ?
                     <>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/*" element={<Login />} />
+                        <Route path="/*" element={<Home />} />
                     </> : <>
                         <Route path="/" element={<Login />} />
 
