@@ -30,7 +30,7 @@ Welcome to the React Supabase Template! This template provides a solid foundatio
 
 3. **Configure environment variables:**
 
-   Create a `.env.local` file in the root directory of the project and add your own Supabase credentials:
+   Create a `.env.local` file in the **`app/`** directory of the project and add your own Supabase credentials:
 
    ```env
    REACT_APP_SUPABASE_URL=YOUR_SUPABASE_URL
