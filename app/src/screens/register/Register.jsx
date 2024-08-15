@@ -24,7 +24,8 @@ export default function Register() {
             const user = await registerWithEmailPassword(email, password);
             console.log("User registered", user);
         } catch (error) {
-            setErrorMessage(error.message || "An unknown error occurred" );
+            console.error("Error registering", error);
+            setErrorMessage(error.code);
         }
     }
 
@@ -53,7 +54,7 @@ export default function Register() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
             />
 
-            {errorMessage}
+            {t(errorMessage)}
 
             <button onClick={() => register()}>{t('register')}</button>
 

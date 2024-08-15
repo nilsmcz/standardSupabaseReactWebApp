@@ -11,7 +11,7 @@ i18next.init({
     resources,
     // lng: "de",
     fallbackLng: "de",  // Fallback-Sprache
-    debug: true,
+    debug: false, //console.log aktivieren
     interpolation: {
         escapeValue: false,     // React benötigt dies nicht
     },
