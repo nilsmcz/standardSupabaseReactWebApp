@@ -10,54 +10,70 @@ export default function Register() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
-    async function register() {
-        errorMessage && setErrorMessage("");
-        if (email === "" || password === "" || confirmPassword === "") {
-            setErrorMessage("Please fill in all fields");
+    const handleRegister = async () => {
+        if (errorMessage) setErrorMessage("");
+
+        if (!email || !password || !confirmPassword) {
+            setErrorMessage(t("inputs_missing"));
             return;
         }
+
         if (password !== confirmPassword) {
-            setErrorMessage("Passwords do not match");
+            setErrorMessage(t("passwordsDoNotMatch"));
             return;
         }
+
         try {
-            const user = await registerWithEmailPassword(email, password);
-            console.log("User registered", user);
+            const data = await registerWithEmailPassword(email, password);
+            console.log("User registered", data);
         } catch (error) {
             console.error("Error registering", error);
-            setErrorMessage(error.code);
+            setErrorMessage(t(error.code) || t("registration_failed"));
         }
-    }
+    };
 
     return (
-        <div style={{ display: "flex", width: "100vw", height: "100vh", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
-            {t('registration')}
+        <div style={styles.container}>
+            <h1>{t('registration')}</h1>
 
             <input
-                type="text"
-                placeholder={"Email"}
+                type="email"
+                placeholder={t('email')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                aria-label={t('email')}
             />
 
             <input
-                type="text"
-                placeholder={"Password"}
+                type="password"
+                placeholder={t('password')}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                aria-label={t('password')}
             />
 
             <input
-                type="text"
-                placeholder={"Confirm Password"}
+                type="password"
+                placeholder={t('confirm_password')}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                aria-label={t('confirm_password')}
             />
 
-            {t(errorMessage)}
+            {errorMessage}
 
-            <button onClick={() => register()}>{t('register')}</button>
-
+            <button onClick={handleRegister}>{t('register')}</button>
         </div>
-    )
+    );
 }
+
+const styles = {
+    container: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100vw",
+        height: "100vh",
+    },
+};

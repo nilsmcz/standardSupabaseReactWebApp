@@ -1,6 +1,16 @@
 {
-  "register": "Registrieren",
+  "email": "E-Mail",
+  "password": "Passwort",
+  "confirm_password": "Passwort bestätigen",
+  "inputs_missing": "Bitte fülle alle Felder aus",
+
   "registration": "Registrierung",
+  "register": "Registrieren",
+  "registration_failed": "Registrierung fehlgeschlagen",
+
+  "login": "Anmelden",
+  "login_failed": "Anmeldung fehlgeschlagen",
+
 
   "weak_password": "Das Passwort ist zu schwach",
   "validation_failed": "Validierung fehlgeschlagen",
