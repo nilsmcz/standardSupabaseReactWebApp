@@ -3,6 +3,6 @@ import { logout } from '../../sideEffects/authEffects'
 
 export default function Home() {
     return (
-        <div onClick={()=>logout()}>Home</div>
+        <div onClick={() => logout()}>Home</div>
     )
 }
