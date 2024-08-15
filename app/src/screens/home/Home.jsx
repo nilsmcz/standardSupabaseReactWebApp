@@ -1,7 +1,8 @@
 import React from 'react'
+import { logout } from '../../sideEffects/authEffects'
 
 export default function Home() {
     return (
-        <div>Home</div>
+        <div onClick={()=>logout()}>Home</div>
     )
 }
