@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { registerWithEmailPassword } from '../../sideEffects/authEffects';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -31,6 +33,10 @@ export default function Register() {
             setErrorMessage(t(error.code) || t("registration_failed"));
         }
     };
+
+    function handleLogin() {
+        navigate('/login');
+    }
 
     return (
         <div style={styles.container}>
@@ -63,6 +69,8 @@ export default function Register() {
             {errorMessage}
 
             <button onClick={handleRegister}>{t('register')}</button>
+
+            <div onClick={()=>handleLogin()}>{t('login')}</div>
         </div>
     );
 }
