@@ -22,6 +22,7 @@ export default function Login() {
         try {
             const data = await loginWithEmailPassword(email, password);
             console.log("User logged in", data);
+            navigate('/');
         } catch (error) {
             console.error("Error logging in", error);
             setErrorMessage(t(error.code) || t("login_failed"));
