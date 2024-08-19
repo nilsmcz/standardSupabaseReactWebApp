@@ -4,10 +4,11 @@ import { supabase } from '../supabase/supabase';
 import { useSelector } from 'react-redux';
 
 //Screens
-import Login from '../screens/login/Login';
-import Register from '../screens/register/Register';
+import Login from '../screens/auth/login/Login';
+import Register from '../screens/auth/register/Register';
 import Home from '../screens/home/Home';
-import ForgotPassword from '../screens/forgotPassword/ForgotPassword';
+import ForgotPassword from '../screens/auth/forgotPassword/ForgotPassword';
+import ChangeEmail from '../screens/settings/changeEmail.jsx/ChangeEmail';
 
 export default function NavigationCentral() {
 
@@ -18,6 +19,8 @@ export default function NavigationCentral() {
             <Routes>
                 {user ?
                     <>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/change-email" element={<ChangeEmail />} />
                         <Route path="/*" element={<Home />} />
                     </> : <>
                         <Route path="/" element={<Login />} />

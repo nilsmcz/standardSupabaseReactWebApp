@@ -1,46 +1,45 @@
 import React, { useState } from 'react';
-import { registerWithEmailPassword } from '../../sideEffects/authEffects';
+import { loginWithEmailPassword } from '../../../sideEffects/authEffects';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-export default function Register() {
+export default function Login() {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
-    const handleRegister = async () => {
+    const handleLogin = async () => {
         if (errorMessage) setErrorMessage("");
 
-        if (!email || !password || !confirmPassword) {
+        if (!email || !password) {
             setErrorMessage(t("inputs_missing"));
             return;
         }
 
-        if (password !== confirmPassword) {
-            setErrorMessage(t("passwordsDoNotMatch"));
-            return;
-        }
-
         try {
-            const data = await registerWithEmailPassword(email, password);
-            console.log("User registered", data);
+            const data = await loginWithEmailPassword(email, password);
+            console.log("User logged in", data);
+            navigate('/');
         } catch (error) {
-            console.error("Error registering", error);
-            setErrorMessage(t(error.code) || t("registration_failed"));
+            console.error("Error logging in", error);
+            setErrorMessage(t(error.code) || t("login_failed"));
         }
-    };
+    }
 
-    function handleLogin() {
-        navigate('/login');
+    function handleRegister() {
+        navigate('/register');
+    }
+
+    function handleForgotPassword() {
+        navigate('/forgot-password');
     }
 
     return (
         <div style={styles.container}>
-            <h1>{t('registration')}</h1>
+            <h1>{t('login')}</h1>
 
             <input
                 type="email"
@@ -58,21 +57,16 @@ export default function Register() {
                 aria-label={t('password')}
             />
 
-            <input
-                type="password"
-                placeholder={t('confirm_password')}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                aria-label={t('confirm_password')}
-            />
-
             {errorMessage}
 
-            <button onClick={handleRegister}>{t('register')}</button>
+            <button onClick={handleLogin}>{t('login')}</button>
 
-            <div onClick={()=>handleLogin()}>{t('login')}</div>
+            <div onClick={()=>handleRegister()}>{t('register')}</div>
+
+            <div onClick={()=>handleForgotPassword()}>{t('forgot_password')}</div>
+
         </div>
-    );
+    )
 }
 
 const styles = {

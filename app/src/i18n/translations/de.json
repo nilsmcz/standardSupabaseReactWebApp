@@ -17,6 +17,11 @@
   "password_reset_failed": "Passwort zurücksetzen fehlgeschlagen",
   "reset": "Zurücksetzen",
 
+  "change_email": "E-Mail ändern",
+  "new_email": "Neue E-Mail",
+  "change_email_failed": "E-Mail ändern fehlgeschlagen",
+  "change": "Ändern",
+
 
   "weak_password": "Das Passwort ist zu schwach",
   "validation_failed": "Validierung fehlgeschlagen",

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { sendPasswordResetEmail } from '../../sideEffects/authEffects';
+import { sendPasswordResetEmail } from '../../../sideEffects/authEffects';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
