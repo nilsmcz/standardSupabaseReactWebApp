@@ -10,6 +10,7 @@ import Home from '../screens/home/Home';
 import ForgotPassword from '../screens/auth/forgotPassword/ForgotPassword';
 import ChangeEmail from '../screens/settings/changeEmail.jsx/ChangeEmail';
 import ChangePassword from '../screens/settings/changePassword/ChangePassword';
+import ChangePhonenumber from '../screens/settings/changePhoneNumber/ChangePhonenumber';
 
 export default function NavigationCentral() {
 
@@ -22,8 +23,10 @@ export default function NavigationCentral() {
                     <>
                         <Route path="/" element={<Home />} />
 
+                        {/* Settings */}
                         <Route path="/change-email" element={<ChangeEmail />} />
                         <Route path="/change-password" element={<ChangePassword />} />
+                        <Route path="/change-phone" element={<ChangePhonenumber />} />
 
                         <Route path="/*" element={<Home />} />
                     </> : <>

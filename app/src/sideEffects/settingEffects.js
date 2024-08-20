@@ -41,9 +41,7 @@ export async function changePassword(email, oldPassword, newPassword) {
             password: oldPassword,
         });
 
-        if (loginError) {
-            throw new Error('old_password_incorrect');
-        }
+        if (loginError) throw loginError;
 
         const { data, error } = await supabase.auth.updateUser({
             password: newPassword,
@@ -53,6 +51,28 @@ export async function changePassword(email, oldPassword, newPassword) {
             throw error;
         }
 
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+/**
+ * Changes the user's phone number in the Supabase authentication system.
+ * 
+ * Note: To ensure this function works properly, the SMS provider must be enabled 
+ * in Supabase, as phone number verification typically occurs via SMS.
+ *
+ * @param {string} newPhoneNumber - The new phone number to be set for the user.
+ * @returns {Object} The updated user data if the phone number change is successful.
+ * @throws Will throw an error if the update fails.
+ */
+export async function changePhoneNumber(newPhoneNumber) {
+    try {
+        const { data, error } = await supabase.auth.updateUser({ phone: newPhoneNumber })
+        if (error) {
+            throw error;
+        }
         return data;
     } catch (error) {
         throw error;

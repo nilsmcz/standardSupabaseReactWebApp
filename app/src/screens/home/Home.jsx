@@ -15,6 +15,8 @@ export default function Home() {
             <Link to="/change-email">{t("change_email")}</Link>
             <br/>
             <Link to="/change-password">{t("change_password")}</Link>
+            <br/>
+            <Link to="/change-phone">{t("change_phonenumber")}</Link>
         </>
     )
 }

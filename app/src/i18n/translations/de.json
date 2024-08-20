@@ -25,6 +25,10 @@
   "change_email_failed": "E-Mail ändern fehlgeschlagen",
   "change": "Ändern",
 
+  "change_phonenumber": "Telefonnummer ändern",
+  "new_phonenumber": "Neue Telefonnummer",
+  "change_phonenumber_failed": "Telefonnummer ändern fehlgeschlagen",
+
   "change_password": "Passwort ändern",
   "new_password": "Neues Passwort",
   "new_password_confirm": "Neues Passwort bestätigen",
