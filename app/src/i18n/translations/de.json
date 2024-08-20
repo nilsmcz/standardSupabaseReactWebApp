@@ -11,6 +11,8 @@
   "login": "Anmelden",
   "login_failed": "Anmeldung fehlgeschlagen",
 
+  "logout": "Abmelden",
+
   "forgot_password": "Passwort vergessen",
   "reset_password": "Passwort zurücksetzen",
   "password_reset": "Passwort zurückgesetzt",
