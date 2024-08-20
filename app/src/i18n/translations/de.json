@@ -34,7 +34,9 @@
   "new_password_confirm": "Neues Passwort bestätigen",
   "change_password_failed": "Passwort ändern fehlgeschlagen",
   "old_password_incorrect": "Aktuelles Passwort ist falsch",
-  
+
+  "change_profile_picture": "Profilbild ändern",
+  "change_profile_picture_failed": "Profilbild ändern fehlgeschlagen",
 
   "weak_password": "Das Passwort ist zu schwach",
   "validation_failed": "Validierung fehlgeschlagen",

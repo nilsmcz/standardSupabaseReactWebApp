@@ -11,6 +11,7 @@ import ForgotPassword from '../screens/auth/forgotPassword/ForgotPassword';
 import ChangeEmail from '../screens/settings/changeEmail.jsx/ChangeEmail';
 import ChangePassword from '../screens/settings/changePassword/ChangePassword';
 import ChangePhonenumber from '../screens/settings/changePhoneNumber/ChangePhonenumber';
+import ChangeProfilePicture from '../screens/settings/changeProfilePicture/ChangeProfilePicture';
 
 export default function NavigationCentral() {
 
@@ -27,6 +28,7 @@ export default function NavigationCentral() {
                         <Route path="/change-email" element={<ChangeEmail />} />
                         <Route path="/change-password" element={<ChangePassword />} />
                         <Route path="/change-phone" element={<ChangePhonenumber />} />
+                        <Route path="/change-profilepicture" element={<ChangeProfilePicture />} />
 
                         <Route path="/*" element={<Home />} />
                     </> : <>
