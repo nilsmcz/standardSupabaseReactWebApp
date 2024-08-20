@@ -9,8 +9,12 @@ export default function Home() {
     return (
         <>
             <h1>Home</h1>
+
             <div onClick={()=>logout()}>{t("logout")}</div>
+            
             <Link to="/change-email">{t("change_email")}</Link>
+            <br/>
+            <Link to="/change-password">{t("change_password")}</Link>
         </>
     )
 }

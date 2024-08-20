@@ -9,6 +9,7 @@ import Register from '../screens/auth/register/Register';
 import Home from '../screens/home/Home';
 import ForgotPassword from '../screens/auth/forgotPassword/ForgotPassword';
 import ChangeEmail from '../screens/settings/changeEmail.jsx/ChangeEmail';
+import ChangePassword from '../screens/settings/changePassword/ChangePassword';
 
 export default function NavigationCentral() {
 
@@ -20,7 +21,10 @@ export default function NavigationCentral() {
                 {user ?
                     <>
                         <Route path="/" element={<Home />} />
+
                         <Route path="/change-email" element={<ChangeEmail />} />
+                        <Route path="/change-password" element={<ChangePassword />} />
+
                         <Route path="/*" element={<Home />} />
                     </> : <>
                         <Route path="/" element={<Login />} />

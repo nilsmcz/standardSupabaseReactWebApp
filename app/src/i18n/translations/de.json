@@ -3,6 +3,7 @@
   "password": "Passwort",
   "confirm_password": "Passwort bestätigen",
   "inputs_missing": "Bitte fülle alle Felder aus",
+  "passwordsDoNotMatch": "Passwörter stimmen nicht überein",
 
   "registration": "Registrierung",
   "register": "Registrieren",
@@ -24,6 +25,12 @@
   "change_email_failed": "E-Mail ändern fehlgeschlagen",
   "change": "Ändern",
 
+  "change_password": "Passwort ändern",
+  "new_password": "Neues Passwort",
+  "new_password_confirm": "Neues Passwort bestätigen",
+  "change_password_failed": "Passwort ändern fehlgeschlagen",
+  "old_password_incorrect": "Aktuelles Passwort ist falsch",
+  
 
   "weak_password": "Das Passwort ist zu schwach",
   "validation_failed": "Validierung fehlgeschlagen",
