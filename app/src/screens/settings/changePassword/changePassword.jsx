@@ -10,8 +10,8 @@ export default function ChangePassword() {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const { dispatch } = store;
-    const user = useSelector(state => state.user.user);
-    const userEmail = user.email;
+    const auth = useSelector(state => state.auth.auth);
+    const userEmail = auth.email;
 
     const [password, setPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
@@ -33,8 +33,8 @@ export default function ChangePassword() {
 
         try {
             const data = await changePassword(userEmail, password, newPassword);
-            const newUser = data.user;
-            dispatch(setAuthUser(newUser));
+            const newUserAuth = data.user;
+            dispatch(setAuthUser(newUserAuth));
             console.log("Password changed:", data.user);
         } catch (error) {
             console.error("Error changing password", error);

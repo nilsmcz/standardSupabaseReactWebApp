@@ -15,12 +15,12 @@ import ChangeProfilePicture from '../screens/settings/changeProfilePicture/Chang
 
 export default function NavigationCentral() {
 
-    const user = useSelector(state => state.user.user);
+    const auth = useSelector(state => state.auth.auth);
 
     return (
         <BrowserRouter>
             <Routes>
-                {user ?
+                {auth ?
                     <>
                         <Route path="/" element={<Home />} />
 

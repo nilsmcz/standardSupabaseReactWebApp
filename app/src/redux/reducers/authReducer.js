@@ -1,18 +1,18 @@
-const initialState = {
-    user: null
+const initialAuthState = {
+    auth: null,
 };
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialAuthState, action) => {
     switch (action.type) {
         case 'SET_AUTH_USER':
             return {
                 ...state,
-                user: action.payload
+                auth: action.payload,
             };
         case 'CLEAR_AUTH_USER':
             return {
                 ...state,
-                user: null
+                auth: null,
             };
         default:
             return state;

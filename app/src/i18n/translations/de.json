@@ -37,6 +37,8 @@
 
   "change_profile_picture": "Profilbild ändern",
   "change_profile_picture_failed": "Profilbild ändern fehlgeschlagen",
+  "upload": "Hochladen",
+  "delete": "Löschen",
 
   "weak_password": "Das Passwort ist zu schwach",
   "validation_failed": "Validierung fehlgeschlagen",
