@@ -1,4 +1,5 @@
 import { supabase } from "../supabase/supabase";
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * Updates the user's email address.
@@ -70,6 +71,21 @@ export async function changePassword(email, oldPassword, newPassword) {
 export async function changePhoneNumber(newPhoneNumber) {
     try {
         const { data, error } = await supabase.auth.updateUser({ phone: newPhoneNumber })
+        if (error) {
+            throw error;
+        }
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function changeProfilePicture(newProfilePicture) {
+    try {
+        const newUuid = uuidv4();
+        const imageType = newProfilePicture.type.split('/')[1];
+        
+        const { data, error } = await supabase.storage.from('profile-pictures').upload(`${newUuid}.${imageType}`, newProfilePicture);
         if (error) {
             throw error;
         }
