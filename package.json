@@ -1,0 +1,8 @@
+{
+    "name": "standardSupabaseReactWebApp",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start-app": "cd app && npm start"
+    }
+}
