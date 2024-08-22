@@ -2,9 +2,22 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Start App",
+            "label": "Start App Local",
             "type": "shell",
-            "command": "npm run start-app", //in package.json
+            "command": "npm run start-app-local", //in package.json
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "group": "develop"
+            },
+            "runOptions": {
+                "runOn": "default"
+            }
+        },
+        {
+            "label": "Start App Online",
+            "type": "shell",
+            "command": "npm run start-app-online", //in package.json
             "presentation": {
                 "reveal": "always",
                 "panel": "new",
