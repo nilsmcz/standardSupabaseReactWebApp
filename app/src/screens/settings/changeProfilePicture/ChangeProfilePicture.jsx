@@ -20,7 +20,6 @@ export default function ChangeProfilePicture() {
         const file = event.target.files[0];
         if (file) {
             setNewProfilePicture(file);
-            console.log(file);
             try {
                 changeProfilePicture(file);
             } catch (error) {
