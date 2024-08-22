@@ -40,6 +40,9 @@
   "upload": "Hochladen",
   "delete": "Löschen",
 
+  "edge_functions": "Edge Functions",
+  "test_edge_function": "Edge Function testen",
+
   "weak_password": "Das Passwort ist zu schwach",
   "validation_failed": "Validierung fehlgeschlagen",
   "invalid format": "Ungültiges Format der Eingabe",

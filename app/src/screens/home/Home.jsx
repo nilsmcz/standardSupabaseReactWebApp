@@ -17,6 +17,8 @@ export default function Home() {
             <Link to="/change-phone">{t("change_phonenumber")}</Link>
             <br/>
             <Link to="/change-profilepicture">{t("change_profile_picture")}</Link>
+            <br/>
+            <Link to="/edge-functions">{t("edge_functions")}</Link>
 
             <br/><br/>
             <div onClick={()=>logout()}>{t("logout")}</div>
