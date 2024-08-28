@@ -1,16 +1,16 @@
-import React, { useState,useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { changeEmail } from '../../../sideEffects/settingEffects';
 import store from '../../../redux/store';
-import { setAuthUser } from '../../../redux/actions/userActions';
+import { setAuthUser } from '../../../redux/actions/authActions';
 import { changeProfilePicture } from '../../../sideEffects/settingEffects';
 
 export default function ChangeProfilePicture() {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const { dispatch } = store;
-    
+
     const [newProfilePicture, setNewProfilePicture] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
     const fileInputRef = useRef(null);
@@ -40,14 +40,14 @@ export default function ChangeProfilePicture() {
             <h1>{t('change_profile_picture')}</h1>
 
             {/* Hidden file input */}
-            <input 
-                type="file" 
-                accept="image/*" 
+            <input
+                type="file"
+                accept="image/*"
                 ref={fileInputRef}
-                onChange={imageUploadHandler} 
-                style={{ display: 'none' }} 
+                onChange={imageUploadHandler}
+                style={{ display: 'none' }}
             />
-            
+
             <div onClick={triggerFileInput}>{t('upload')}</div>
 
             <div>{t('delete')}</div>

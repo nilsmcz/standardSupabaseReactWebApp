@@ -16,7 +16,7 @@ import EdgeFunctions from '../screens/edgeFunctions/EdgeFunctions';
 
 export default function NavigationCentral() {
 
-    const auth = useSelector(state => state.auth.auth);
+    const auth = useSelector(state => state.auth.user);
 
     return (
         <BrowserRouter>
@@ -39,7 +39,7 @@ export default function NavigationCentral() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/forgot-password" element={<ForgotPassword />} />
-                        
+
                         <Route path="/*" element={<Login />} />
                     </>
                 }

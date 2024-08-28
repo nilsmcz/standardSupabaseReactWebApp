@@ -17,11 +17,25 @@ export default function EdgeFunctions() {
         }
     }
 
+    async function registerUserWithProfile() {
+        const { data, error } = await supabase.functions.invoke('registerUSerWithProfile', {
+            body: JSON.stringify({ param1: 5, param2: 10 }),
+        })
+
+        if (error) {
+            console.error('Error:', error)
+        }
+        else {
+            console.log('Function result:', data.result)
+        }
+    }
+
     return (
         <div style={styles.container}>
             <h1>{t('edge_functions')}</h1>
 
-            <button onClick={()=>callHello()}>{t('test_edge_function')}: hello</button>
+            <button onClick={() => callHello()}>{t('test_edge_function')}: hello</button>
+            <button onClick={() => registerUserWithProfile()}>{t('test_edge_function')}: registerUserWithProfile</button>
         </div>
     )
 }

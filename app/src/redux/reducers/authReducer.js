@@ -1,5 +1,10 @@
 const initialAuthState = {
-    auth: null,
+    user: null, // Speichert die Benutzerinformationen
+    session: {
+        accessToken: null,
+        refreshToken: null,
+        expiresAt: null,
+    },
 };
 
 const authReducer = (state = initialAuthState, action) => {
@@ -7,12 +12,22 @@ const authReducer = (state = initialAuthState, action) => {
         case 'SET_AUTH_USER':
             return {
                 ...state,
-                auth: action.payload,
+                user: action.payload.user, // Benutzerinformationen aus action.payload.user
+                session: {
+                    accessToken: action.payload.access_token,
+                    refreshToken: action.payload.refresh_token,
+                    expiresAt: action.payload.expires_at,
+                },
             };
         case 'CLEAR_AUTH_USER':
             return {
                 ...state,
-                auth: null,
+                user: null,
+                session: {
+                    accessToken: null,
+                    refreshToken: null,
+                    expiresAt: null,
+                },
             };
         default:
             return state;

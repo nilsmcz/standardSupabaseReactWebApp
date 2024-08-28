@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import store from '../../../redux/store';
-import { setAuthUser } from '../../../redux/actions/userActions';
+import { setAuthUser } from '../../../redux/actions/authActions';
 import { changePassword } from '../../../sideEffects/settingEffects';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ export default function ChangePassword() {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const { dispatch } = store;
-    const auth = useSelector(state => state.auth.auth);
+    const auth = useSelector(state => state.auth.user);
     const userEmail = auth.email;
 
     const [password, setPassword] = useState("");

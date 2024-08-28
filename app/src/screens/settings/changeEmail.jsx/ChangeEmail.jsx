@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { changeEmail } from '../../../sideEffects/settingEffects';
 import store from '../../../redux/store';
-import { setAuthUser } from '../../../redux/actions/userActions';
+import { setAuthUser } from '../../../redux/actions/authActions';
 
 export default function ChangeEmail() {
     const { t } = useTranslation();
