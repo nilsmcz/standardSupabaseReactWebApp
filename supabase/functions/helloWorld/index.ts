@@ -71,7 +71,6 @@ Deno.serve(async (req) => {
     return new Response(
       JSON.stringify({
         message: "User successfully inserted or already exists",
-        user,
       }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
