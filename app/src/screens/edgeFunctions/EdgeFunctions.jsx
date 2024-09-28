@@ -9,27 +9,22 @@ export default function EdgeFunctions() {
     const accessToken = session?.accessToken;
 
     async function callHello() {
-        const { data, error } = await supabase.functions.invoke('hello', {
-            body: JSON.stringify({ param1: 5, param2: 10 }),
-            headers: {
-                Authorization: `Bearer ${accessToken}`
-            }
+        const { data, error } = await supabase.functions.invoke('helloWorld', {
+            body: JSON.stringify({ name: "Nils", number: 10 }),
+            headers: { Authorization: `Bearer ${accessToken}` }
         });
 
         if (error) {
             console.error('Error:', error);
         } else {
-            console.log('Function result:', data.result);
+            console.log('Function result:', data);
         }
     }
 
     async function registerUserWithProfile() {
-        console.log("Access Token:", accessToken);
         const { data, error } = await supabase.functions.invoke('registerUSerWithProfile', {
             body: JSON.stringify({ param1: 5, param2: 10 }),
-            headers: {
-                Authorization: `Bearer ${accessToken}`
-            }
+            headers: { Authorization: `Bearer ${accessToken}` }
         });
 
         if (error) {
@@ -42,7 +37,7 @@ export default function EdgeFunctions() {
     return (
         <div style={styles.container}>
             <h1>{t('edge_functions')}</h1>
-            <button onClick={() => callHello()}>{t('test_edge_function')}: hello</button>
+            <button onClick={() => callHello()}>{t('test_edge_function')}: helloWorld</button>
             <button onClick={() => registerUserWithProfile()}>{t('test_edge_function')}: registerUserWithProfile</button>
         </div>
     );
