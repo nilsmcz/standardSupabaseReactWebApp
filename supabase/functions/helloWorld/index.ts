@@ -10,7 +10,7 @@ Deno.serve(async (req) => {
 
   try {
     //INPUT PARAMS
-    const { name, number } = await req.json();
+    // const { name, number } = await req.json();
 
     //SUPABESE
     const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
@@ -21,21 +21,42 @@ Deno.serve(async (req) => {
     if (!SUPABASE_ANON_KEY) {
       throw new Error("No_SUPABASE_ANON_KEY");
     }
+    const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    if (!SUPABASE_SERVICE_ROLE_KEY) {
+      throw new Error("No_SUPABASE_SERVICE_ROLE_KEY");
+    }
 
     //CLIENT
-    const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
     // Get the session or user object
     const authHeader = req.headers.get("Authorization")!;
     const token = authHeader.replace("Bearer ", "");
-    const { data } = await supabaseClient.auth.getUser(token);
+    const { data } = await supabase.auth.getUser(token);
     const user = data.user;
 
-    return new Response(JSON.stringify({ user }), {
+    if (!user) {
+      console.error("No_User_Found");
+      throw new Error("No_User_Found");
+    }
+
+    //ACTION
+    const { error: insertError } = await supabase
+      .from("user_profiles")
+      .insert([{ id: user.id }]);
+
+    if (insertError) {
+      console.error("Insert_Error: ", insertError);
+      throw new Error("Insert_Error");
+    }
+    //END_ACTION
+
+    return new Response(JSON.stringify({ supabase, user }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
   } catch (error) {
+    console.error("Error:", error);
     return new Response(JSON.stringify({ error: error.message }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 400,
