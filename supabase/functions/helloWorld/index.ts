@@ -23,10 +23,7 @@ Deno.serve(async (req) => {
     }
 
     //CLIENT
-    const supabaseClient = createClient(
-      SUPABASE_URL,
-      SUPABASE_ANON_KEY,
-    );
+    const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     // Get the session or user object
     const authHeader = req.headers.get("Authorization")!;
