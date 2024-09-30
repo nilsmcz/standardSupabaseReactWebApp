@@ -1,9 +1,12 @@
 {
-    "name": "standardSupabaseReactWebApp",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "start-app-local": "cross-env SUPABASE_LOCAL=true && cd app && npm start",
-        "start-app-online": "cross-env SUPABASE_LOCAL=false && cd app && npm start"
-    }
+  "name": "standardSupabaseReactWebApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start-app-local": "cross-env SUPABASE_LOCAL=true && cd app && npm start",
+    "start-app-online": "cross-env SUPABASE_LOCAL=false && cd app && npm start"
+  },
+  "devDependencies": {
+    "@types/node": "^15.0.3"
+  }
 }

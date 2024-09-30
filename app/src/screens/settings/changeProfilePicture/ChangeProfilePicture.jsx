@@ -1,27 +1,27 @@
 import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { changeEmail } from '../../../sideEffects/settingEffects';
 import store from '../../../redux/store';
-import { setAuthUser } from '../../../redux/actions/authActions';
 import { changeProfilePicture } from '../../../sideEffects/settingEffects';
+import { useSelector } from 'react-redux';
 
 export default function ChangeProfilePicture() {
     const { t } = useTranslation();
-    const navigate = useNavigate();
-    const { dispatch } = store;
+    const session = useSelector(state => state.auth.session);
+    const accessToken = session?.accessToken;
 
     const [newProfilePicture, setNewProfilePicture] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
     const fileInputRef = useRef(null);
 
 
-    function imageUploadHandler(event) {
+    async function imageUploadHandler(event) {
         const file = event.target.files[0];
         if (file) {
             setNewProfilePicture(file);
             try {
-                changeProfilePicture(file);
+                const result = await changeProfilePicture(accessToken, file);
+                console.log("Profile picture changed successfully: ", result);
             } catch (error) {
                 console.error("Error changing profile picture", error);
                 setErrorMessage(t("change_profile_picture_failed"));

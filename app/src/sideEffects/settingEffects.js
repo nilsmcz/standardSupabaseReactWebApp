@@ -80,15 +80,34 @@ export async function changePhoneNumber(newPhoneNumber) {
     }
 }
 
-export async function changeProfilePicture(newProfilePicture) {
+export async function changeProfilePicture(accessToken, file) {
+    if (!accessToken) {
+        throw new Error('Access token is required to change profile picture');
+    }
+    if (!file) {
+        throw new Error('New profile picture is required to change profile picture');
+    }
+
+    // Log the image to check its contents
+    console.log("newProfilePicture", file);
+
     try {
         const newUuid = uuidv4();
-        const imageType = newProfilePicture.type.split('/')[1];
-        
-        const { data, error } = await supabase.storage.from('profile-pictures').upload(`${newUuid}.${imageType}`, newProfilePicture);
+        const fileExt = file.name.split('.').pop();
+        const filePath = `${newUuid}.${fileExt}`;
+
+        const formData = new FormData();
+        formData.append("image", file, filePath);
+
+        const { data, error } = await supabase.functions.invoke('setProfilePicture', {
+            body: formData,
+            headers: { Authorization: `Bearer ${accessToken}` }
+        });
+
         if (error) {
             throw error;
         }
+
         return data;
     } catch (error) {
         throw error;
