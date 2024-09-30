@@ -13,9 +13,6 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // INPUT PARAMS (optional, falls du Parameter verarbeiten möchtest)
-    // const { image64, uuid } = await req.json();
-
     // SUPABASE ENVIRONMENT VARIABLES
     const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
     if (!SUPABASE_URL) {
@@ -57,7 +54,6 @@ Deno.serve(async (req) => {
 
     // ACTION: upload 'image' to "profile_pictures" storage
 
-    // Decodiere das Base64-Bild
     const form = await multiParser(req);
     if (!form) {
       return new Response(
@@ -69,11 +65,7 @@ Deno.serve(async (req) => {
       );
     }
 
-    console.log("form", form);
-
     const image: FormFile = form.files.image as FormFile;
-
-    console.log("image", image);
 
     const { error: uploadError } = await supabase.storage.from(
       "profile_pictures",

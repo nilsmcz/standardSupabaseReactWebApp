@@ -88,9 +88,6 @@ export async function changeProfilePicture(accessToken, file) {
         throw new Error('New profile picture is required to change profile picture');
     }
 
-    // Log the image to check its contents
-    console.log("newProfilePicture", file);
-
     try {
         const newUuid = uuidv4();
         const fileExt = file.name.split('.').pop();
