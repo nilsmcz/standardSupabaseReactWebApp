@@ -17,6 +17,8 @@ export default function ChangeProfilePicture() {
     const [errorMessage, setErrorMessage] = useState("");
     const fileInputRef = useRef(null);
 
+    const defaultImageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTar_ouGael5ODlrC1kbFbKLpEPSJtTQqdaIg&s';
+
 
     async function imageUploadHandler(event) {
         const file = event.target.files[0];
@@ -52,7 +54,7 @@ export default function ChangeProfilePicture() {
             />
 
             <img
-                src={profile_picture_url || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTar_ouGael5ODlrC1kbFbKLpEPSJtTQqdaIg&s'}
+                src={profile_picture_url || defaultImageUrl}
                 alt={t('profile_picture_alt')}
                 style={{ width: '150px', height: '150px', borderRadius: '50%' }}
             />
