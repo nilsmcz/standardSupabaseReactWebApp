@@ -106,7 +106,7 @@ export async function changeProfilePicture(accessToken, file) {
         if (error) {
             throw error;
         }
-        console.log("Profile picture changed successfully: ", data);
+
         dispatch(updateProfilePicture(data));
 
         return data;
