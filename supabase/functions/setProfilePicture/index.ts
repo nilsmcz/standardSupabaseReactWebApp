@@ -67,7 +67,7 @@ Deno.serve(async (req) => {
 
     const image: FormFile = form.files.image as FormFile;
 
-    const { error: uploadError } = await supabase.storage.from(
+    const { data: result, error: uploadError } = await supabase.storage.from(
       "profile_pictures",
     ).upload(image.filename, image.content!.buffer, {
       contentType: image.contentType,
@@ -79,9 +79,53 @@ Deno.serve(async (req) => {
       throw new Error(`Upload failed: ${uploadError.message}`);
     }
 
+    const path = result?.path;
+
+    const { data: imageUrl } = supabase
+      .storage
+      .from("profile_pictures")
+      .getPublicUrl(path);
+
+    const url = imageUrl?.publicUrl;
+
+    const { data: oldData, error: oldError } = await supabase
+      .from("user_profiles")
+      .select("profile_picture_path")
+      .eq("id", user.id);
+
+    if (oldError) {
+      throw new Error(`Database select error: ${oldError.message}`);
+    }
+
+    const oldPath = oldData?.[0]?.profile_picture_path;
+
+    const { error: insertError } = await supabase
+      .from("user_profiles")
+      .update({
+        profile_picture_url: url,
+        profile_picture_path: path,
+      })
+      .eq("id", user.id);
+
+    if (insertError) {
+      console.error("Insert error: ", insertError);
+      throw new Error(`Database insert error: ${insertError.message}`);
+    }
+
+    const { data: removeData, error: removeError } = await supabase
+      .storage
+      .from("profile_pictures")
+      .remove([oldPath]);
+
+    if (removeError) {
+      console.error("Remove error: ", removeError);
+      throw new Error(`Storage remove error: ${removeError.message}`);
+    }
+
     // RESPONSE: Erfolgreiche Antwort senden
     return new Response(
       JSON.stringify({
+        url: url,
         message: "Profile picture successfully uploaded",
       }),
       {
