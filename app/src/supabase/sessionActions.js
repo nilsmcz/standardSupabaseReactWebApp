@@ -19,7 +19,6 @@ export async function signedIn(session) {
     }
     //Set user profile in redux store
     const profile = fetchedProfiles.profile[0];
-    console.log("Fetched profile: ", profile);
     dispatch(setProfile(profile));
 }
 

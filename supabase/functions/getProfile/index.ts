@@ -1,11 +1,7 @@
 import { corsHeaders } from "../_shared/cors.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
-import {
-  FormFile,
-  multiParser,
-} from "https://deno.land/x/multiparser@0.114.0/mod.ts";
 
-console.log(`Function "setProfilePicture" is now running!`);
+console.log(`Function "getProfile" is now running!`);
 
 Deno.serve(async (req) => {
   // Handle preflight OPTIONS request for CORS
