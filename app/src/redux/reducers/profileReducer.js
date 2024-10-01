@@ -17,6 +17,12 @@ const profileReducer = (state = initialProfileState, action) => {
                 profile_picture_url: null,
                 profile_picture_path: null
             };
+        case 'UPDATE_PROFILE_PICTURE':
+            return {
+                ...state,
+                profile_picture_url: action.payload.profile_picture_url,
+                profile_picture_path: action.payload.profile_picture_path
+            };
         default:
             return state;
     }

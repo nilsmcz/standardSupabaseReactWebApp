@@ -6,3 +6,8 @@ export const setProfile = (profileData) => ({
 export const clearProfile = () => ({
     type: 'CLEAR_PROFILE',
 });
+
+export const updateProfilePicture = (profileData) => ({
+    type: 'UPDATE_PROFILE_PICTURE',
+    payload: profileData,
+});
