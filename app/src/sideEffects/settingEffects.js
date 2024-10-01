@@ -82,6 +82,21 @@ export async function changePhoneNumber(newPhoneNumber) {
     }
 }
 
+/**
+ * Updates the user's profile picture by uploading a new image to Supabase.
+ *
+ * This function handles the process of uploading a new profile picture to Supabase's
+ * storage or function service. It generates a unique file name for the image using
+ * a UUID, appends the file to a `FormData` object, and invokes a Supabase function
+ * (`setProfilePicture`) to store the image. The access token is required for
+ * authentication, and the Redux store is updated with the new profile picture
+ * upon success.
+ *
+ * @param {string} accessToken - The access token of the currently authenticated user, required for authorization.
+ * @param {File} file - The new profile picture file to be uploaded. Must be an image file.
+ * @returns {Promise<Object>} - Returns the response data from the Supabase function if successful.
+ * @throws {Error} - Throws an error if the access token is missing, the file is missing, or the upload fails.
+ */
 export async function changeProfilePicture(accessToken, file) {
     if (!accessToken) {
         throw new Error('Access token is required to change profile picture');

@@ -11,3 +11,7 @@ export const updateProfilePicture = (profileData) => ({
     type: 'UPDATE_PROFILE_PICTURE',
     payload: profileData,
 });
+
+export const clearProfilePicture = () => ({
+    type: 'CLEAR_PROFILE_PICTURE',
+});
