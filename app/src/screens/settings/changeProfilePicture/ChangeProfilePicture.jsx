@@ -10,6 +10,9 @@ export default function ChangeProfilePicture() {
     const session = useSelector(state => state.auth.session);
     const accessToken = session?.accessToken;
 
+    const profile = useSelector(state => state.profile);
+    const profile_picture_url = profile?.profile_picture_url;
+
     const [newProfilePicture, setNewProfilePicture] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
     const fileInputRef = useRef(null);
@@ -46,6 +49,12 @@ export default function ChangeProfilePicture() {
                 ref={fileInputRef}
                 onChange={imageUploadHandler}
                 style={{ display: 'none' }}
+            />
+
+            <img
+                src={profile_picture_url || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTar_ouGael5ODlrC1kbFbKLpEPSJtTQqdaIg&s'}
+                alt={t('profile_picture_alt')}
+                style={{ width: '150px', height: '150px', borderRadius: '50%' }}
             />
 
             <div onClick={triggerFileInput}>{t('upload')}</div>

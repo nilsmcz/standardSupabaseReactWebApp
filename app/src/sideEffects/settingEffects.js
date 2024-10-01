@@ -1,6 +1,8 @@
 import { supabase } from "../supabase/supabase";
 import { v4 as uuidv4 } from 'uuid';
-
+import store from '../redux/store';
+import { updateProfilePicture } from "../redux/actions/profileActions";
+const { dispatch } = store;
 /**
  * Updates the user's email address.
  *
@@ -104,6 +106,8 @@ export async function changeProfilePicture(accessToken, file) {
         if (error) {
             throw error;
         }
+        console.log("Profile picture changed successfully: ", data);
+        dispatch(updateProfilePicture(data));
 
         return data;
     } catch (error) {

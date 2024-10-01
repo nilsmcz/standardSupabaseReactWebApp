@@ -140,7 +140,8 @@ Deno.serve(async (req) => {
     // Send success response
     return new Response(
       JSON.stringify({
-        url: publicUrl,
+        profile_picture_url: publicUrl,
+        profile_picture_path: uploadedPath,
         message: "Profile picture successfully uploaded",
       }),
       {
