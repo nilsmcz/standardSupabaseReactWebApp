@@ -1,5 +1,6 @@
 const initialProfileState = {
-    profile: null,
+    profile_picture_url: null,
+    profile_picture_path: null
 };
 
 const profileReducer = (state = initialProfileState, action) => {
@@ -7,12 +8,14 @@ const profileReducer = (state = initialProfileState, action) => {
         case 'SET_PROFILE':
             return {
                 ...state,
-                profile: action.payload,
+                profile_picture_url: action.payload.profile_picture_url,
+                profile_picture_path: action.payload.profile_picture_path
             };
         case 'CLEAR_PROFILE':
             return {
                 ...state,
-                profile: null,
+                profile_picture_url: null,
+                profile_picture_path: null
             };
         default:
             return state;
