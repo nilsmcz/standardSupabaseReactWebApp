@@ -11,6 +11,7 @@
 
   "login": "Anmelden",
   "login_failed": "Anmeldung fehlgeschlagen",
+  "invalid_credentials": "Fehlerhafte Anmeldeinformationen",
 
   "logout": "Abmelden",
 
