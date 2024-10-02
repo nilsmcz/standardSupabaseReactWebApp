@@ -93,7 +93,6 @@ export async function changePhoneNumber(newPhoneNumber) {
  * authentication, and the Redux store is updated with the new profile picture
  * upon success.
  *
- * @param {string} accessToken - The access token of the currently authenticated user, required for authorization.
  * @param {File} file - The new profile picture file to be uploaded. Must be an image file.
  * @returns {Promise<Object>} - Returns the response data from the Supabase function if successful.
  * @throws {Error} - Throws an error if the access token is missing, the file is missing, or the upload fails.
@@ -137,7 +136,6 @@ export async function changeProfilePicture(file) {
  * It requires a valid access token for authorization and updates the Redux store
  * by clearing the profile picture from the local state.
  *
- * @param {string} accessToken - The access token of the currently authenticated user, required for authorization.
  * @returns {Promise<Object>} - Returns the response data from the Supabase function if successful.
  * @throws {Error} - Throws an error if the access token is missing or if the profile picture deletion fails.
  */
