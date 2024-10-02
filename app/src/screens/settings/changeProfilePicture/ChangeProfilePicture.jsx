@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import store from '../../../redux/store';
-import { changeProfilePicture } from '../../../sideEffects/settingEffects';
+import { changeProfilePicture, deleteProfilePicture } from '../../../sideEffects/settingEffects';
 import { useSelector } from 'react-redux';
 
 export default function ChangeProfilePicture() {
@@ -40,6 +40,15 @@ export default function ChangeProfilePicture() {
         }
     }
 
+    async function removeProfilePicture() {
+        try {
+            const result = await deleteProfilePicture(accessToken);
+        } catch (error) {
+            console.error("Error deleting profile picture", error);
+            setErrorMessage(t("delete_profile_picture_failed"));
+        }
+    }
+
     return (
         <div style={styles.container}>
             <h1>{t('change_profile_picture')}</h1>
@@ -60,11 +69,11 @@ export default function ChangeProfilePicture() {
             />
 
             <div onClick={triggerFileInput}>{t('upload')}</div>
-
-            <div>{t('delete')}</div>
+            <br></br>
+            <div onClick={() => removeProfilePicture()}>{t('delete')}</div>
 
             {errorMessage}
-        </div>
+        </div >
     )
 }
 

@@ -1,7 +1,7 @@
 import { supabase } from "../supabase/supabase";
 import { v4 as uuidv4 } from 'uuid';
 import store from '../redux/store';
-import { updateProfilePicture } from "../redux/actions/profileActions";
+import { updateProfilePicture, clearProfilePicture } from "../redux/actions/profileActions";
 const { dispatch } = store;
 /**
  * Updates the user's email address.
@@ -125,6 +125,28 @@ export async function changeProfilePicture(accessToken, file) {
         dispatch(updateProfilePicture(data));
 
         return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function deleteProfilePicture(accessToken) {
+    if (!accessToken) {
+        throw new Error('Access token is required to change profile picture');
+    }
+
+    try {
+        const { data, error } = await supabase.functions.invoke('deleteProfilePicture', {
+            headers: { Authorization: `Bearer ${accessToken}` }
+        });
+
+        if (error) {
+            throw error;
+        }
+
+        dispatch(clearProfilePicture())
+
+        return data
     } catch (error) {
         throw error;
     }
