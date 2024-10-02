@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import store from '../../../redux/store';
 import { changeProfilePicture, deleteProfilePicture } from '../../../sideEffects/settingEffects';
 import { useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ export default function ChangeProfilePicture() {
     const { t } = useTranslation();
     const session = useSelector(state => state.auth.session);
     const accessToken = session?.accessToken;
+    const navigate = useNavigate();
 
     const profile = useSelector(state => state.profile);
     const profile_picture_url = profile?.profile_picture_url;
@@ -71,7 +72,8 @@ export default function ChangeProfilePicture() {
             <div onClick={triggerFileInput}>{t('upload')}</div>
             <br></br>
             <div onClick={() => removeProfilePicture()}>{t('delete')}</div>
-
+            <br></br>
+            <div onClick={() => navigate(-1)}>{t('back')}</div>
             {errorMessage}
         </div >
     )
