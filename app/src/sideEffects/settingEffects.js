@@ -2,6 +2,7 @@ import { supabase } from "../supabase/supabase";
 import { v4 as uuidv4 } from 'uuid';
 import store from '../redux/store';
 import { updateProfilePicture, clearProfilePicture } from "../redux/actions/profileActions";
+import { checkAuthSession } from "../utils";
 const { dispatch } = store;
 /**
  * Updates the user's email address.
@@ -97,10 +98,9 @@ export async function changePhoneNumber(newPhoneNumber) {
  * @returns {Promise<Object>} - Returns the response data from the Supabase function if successful.
  * @throws {Error} - Throws an error if the access token is missing, the file is missing, or the upload fails.
  */
-export async function changeProfilePicture(accessToken, file) {
-    if (!accessToken) {
-        throw new Error('Access token is required to change profile picture');
-    }
+export async function changeProfilePicture(file) {
+    const accessToken = checkAuthSession();
+
     if (!file) {
         throw new Error('New profile picture is required to change profile picture');
     }
@@ -130,10 +130,19 @@ export async function changeProfilePicture(accessToken, file) {
     }
 }
 
-export async function deleteProfilePicture(accessToken) {
-    if (!accessToken) {
-        throw new Error('Access token is required to change profile picture');
-    }
+/**
+ * Deletes the user's profile picture.
+ *
+ * This function invokes a Supabase server function to delete the user's profile picture.
+ * It requires a valid access token for authorization and updates the Redux store
+ * by clearing the profile picture from the local state.
+ *
+ * @param {string} accessToken - The access token of the currently authenticated user, required for authorization.
+ * @returns {Promise<Object>} - Returns the response data from the Supabase function if successful.
+ * @throws {Error} - Throws an error if the access token is missing or if the profile picture deletion fails.
+ */
+export async function deleteProfilePicture() {
+    const accessToken = checkAuthSession();
 
     try {
         const { data, error } = await supabase.functions.invoke('deleteProfilePicture', {

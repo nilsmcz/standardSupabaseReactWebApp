@@ -26,7 +26,7 @@ export default function ChangeProfilePicture() {
         if (file) {
             setNewProfilePicture(file);
             try {
-                const result = await changeProfilePicture(accessToken, file);
+                const result = await changeProfilePicture(file);
                 console.log("Profile picture changed successfully: ", result);
             } catch (error) {
                 console.error("Error changing profile picture", error);
@@ -43,7 +43,7 @@ export default function ChangeProfilePicture() {
 
     async function removeProfilePicture() {
         try {
-            const result = await deleteProfilePicture(accessToken);
+            const result = await deleteProfilePicture();
         } catch (error) {
             console.error("Error deleting profile picture", error);
             setErrorMessage(t("delete_profile_picture_failed"));
