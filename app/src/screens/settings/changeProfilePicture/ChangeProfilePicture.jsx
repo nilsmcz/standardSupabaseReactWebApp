@@ -27,7 +27,6 @@ export default function ChangeProfilePicture() {
             setNewProfilePicture(file);
             try {
                 const result = await changeProfilePicture(file);
-                console.log("Profile picture changed successfully: ", result);
             } catch (error) {
                 console.error("Error changing profile picture", error);
                 setErrorMessage(t("change_profile_picture_failed"));
