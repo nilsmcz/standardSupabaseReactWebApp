@@ -10,6 +10,39 @@ Welcome to the React Supabase Template! This template provides a solid foundatio
 - **i18n**: Support for multiple languages.
 - **Navigation**: A robust navigation system for your app.
 - **Modular Code**: Well-structured and maintainable codebase.
+- **Supabase Edge Functions**: Custom server-side functions using Supabase Edge Functions.
+
+## 📂 Project Structure
+
+- **`i18n/`**: Configuration and resources for internationalization.
+- **`navigation/`**: Files and components related to app navigation.
+- **`redux/`**: Redux state management, including store and reducers.
+- **`screens/`**: Various screens and views of the application.
+- **`sideEffects/`**: Side effects and asynchronous operations.
+- **`supabase/`**: Functions and configurations for integrating with Supabase.
+- **`supabase/functions/`**: Edge Functions that handle custom server-side logic.
+
+## 🧩 Supabase Edge Functions
+
+In the `supabase/functions/` directory, you will find several custom edge functions that extend the functionality of your app:
+
+- **deleteProfilePicture**: Deletes a user's profile picture from storage and removes the corresponding entries from the `user_profiles` table.
+- **getProfile**: Retrieves all entries for a user based on the user's ID from the `user_profiles` table.
+- **helloWorld**: A simple example function to demonstrate how Edge Functions work.
+- **setProfilePicture**: Uploads a picture to the storage and stores the image ID and path in the `user_profiles` table for the user.
+
+Additional functions available:
+
+- **changeEmail**: Allows a user to update their email address.
+- **changePassword**: Allows a user to update their password.
+- **changePhoneNumber**: Allows a user to update their phone number.
+- **changeProfilePicture**: Allows a user to update their profile picture.
+
+These functions interact with Supabase's storage, authentication, and database services to provide secure, server-side logic.
+
+## 🔄 State Management
+
+All authentication and profile information is stored and managed in Redux, ensuring that the app can efficiently manage user data and state throughout its lifecycle.
 
 ## 🚀 Quick Start
 
@@ -39,7 +72,39 @@ Welcome to the React Supabase Template! This template provides a solid foundatio
 
    Replace `YOUR_SUPABASE_URL` and `YOUR_SUPABASE_ANON_KEY` with your actual Supabase project values.
 
-4. **Start the development server:**
+4. **Set up Supabase:**
+
+   - If you're running Supabase locally, you'll need to [set up the Supabase CLI](https://supabase.com/docs/guides/cli) and run Supabase as an emulator:
+
+     ```bash
+     supabase start
+     ```
+
+     This starts Supabase locally, allowing you to work in a local development environment.
+
+   - Create the necessary tables and storage buckets in Supabase:
+
+     **SQL for user_profiles table**:
+
+     ```sql
+     create table
+       public.user_profiles (
+         id uuid not null default auth.uid(),
+         profile_picture_url text null,
+         profile_picture_path text null,
+         constraint user_profiles_pkey primary key (id)
+       ) tablespace pg_default;
+     ```
+
+     **Storage bucket**:
+
+     Create a bucket named `profile_pictures` with public access for storing profile pictures.
+
+5. **Install VS Code Tasks Extension (optional but recommended):**
+
+   Install the [VS Code Tasks Extension](https://marketplace.visualstudio.com/items?itemName=actboy168.tasks) (`actboy168.tasks`) to enable quick access to start the app both locally and online using buttons in VS Code.
+
+6. **Start the development server:**
 
    Run the following command to start the development server:
 
@@ -49,21 +114,13 @@ Welcome to the React Supabase Template! This template provides a solid foundatio
 
    Your application should now be available at [http://localhost:3000](http://localhost:3000).
 
-## 📂 Project Structure
-
-- **`i18n/`**: Configuration and resources for internationalization.
-- **`navigation/`**: Files and components related to app navigation.
-- **`redux/`**: Redux state management, including store and reducers.
-- **`screens/`**: Various screens and views of the application.
-- **`sideEffects/`**: Side effects and asynchronous operations.
-- **`supabase/`**: Functions and configurations for integrating with Supabase.
-
 ## 📝 Additional Information
 
 - **Supabase Documentation**: [Supabase Docs](https://supabase.com/docs)
 - **React Documentation**: [React Docs](https://reactjs.org/docs/getting-started.html)
 - **Redux Documentation**: [Redux Docs](https://redux.js.org/)
 - **i18n Documentation**: [i18next Docs](https://www.i18next.com/)
+- **VS Code Tasks Extension**: [VS Code Tasks](https://marketplace.visualstudio.com/items?itemName=actboy168.tasks)
 
 If you have any questions or need support, feel free to [open an issue here](https://github.com/nilsmcz/standardSupabaseReactWebApp/issues).
 
