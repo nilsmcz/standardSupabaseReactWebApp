@@ -13,6 +13,7 @@ import ChangePassword from '../screens/settings/changePassword/ChangePassword';
 import ChangePhonenumber from '../screens/settings/changePhoneNumber/ChangePhonenumber';
 import ChangeProfilePicture from '../screens/settings/changeProfilePicture/ChangeProfilePicture';
 import EdgeFunctions from '../screens/edgeFunctions/EdgeFunctions';
+import ChangeProfilePictureCrop from '../screens/settings/changeProfilePictureCrop/ChangeProfilePictureCrop';
 
 export default function NavigationCentral() {
 
@@ -30,6 +31,7 @@ export default function NavigationCentral() {
                         <Route path="/change-password" element={<ChangePassword />} />
                         <Route path="/change-phone" element={<ChangePhonenumber />} />
                         <Route path="/change-profilepicture" element={<ChangeProfilePicture />} />
+                        <Route path="/change-profilepicture-crop" element={<ChangeProfilePictureCrop />} />
                         <Route path="/edge-functions" element={<EdgeFunctions />} />
 
                         <Route path="/*" element={<Home />} />

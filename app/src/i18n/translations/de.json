@@ -37,8 +37,10 @@
   "old_password_incorrect": "Aktuelles Passwort ist falsch",
 
   "change_profile_picture": "Profilbild ändern",
+  "change_profile_picture_crop": "Profilbild ändern mit Zuschneiden",
   "change_profile_picture_failed": "Profilbild ändern fehlgeschlagen",
   "upload": "Hochladen",
+  "upload_with_crop": "Zuschneiden und Hochladen",
   "delete": "Löschen",
 
   "edge_functions": "Edge Functions",
