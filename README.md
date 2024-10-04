@@ -61,7 +61,15 @@ All authentication and profile information is stored and managed in Redux, ensur
    npm install
    ```
 
-3. **Configure environment variables:**
+3. **Install additional dependencies:**
+
+   Additionally, install `cross-env` globally to handle environment variables:
+
+   ```bash
+   npm install -g cross-env
+   ```
+
+4. **Configure environment variables:**
 
    Create a `.env.local` file in the **`app/`** directory of the project and add your own Supabase credentials:
 
@@ -72,7 +80,7 @@ All authentication and profile information is stored and managed in Redux, ensur
 
    Replace `YOUR_SUPABASE_URL` and `YOUR_SUPABASE_ANON_KEY` with your actual Supabase project values.
 
-4. **Set up Supabase:**
+5. **Set up Supabase:**
 
    - If you're running Supabase locally, you'll need to [set up the Supabase CLI](https://supabase.com/docs/guides/cli) and run Supabase as an emulator:
 
@@ -100,11 +108,11 @@ All authentication and profile information is stored and managed in Redux, ensur
 
      Create a bucket named `profile_pictures` with public access for storing profile pictures.
 
-5. **Install VS Code Tasks Extension (optional but recommended):**
+6. **Install VS Code Tasks Extension (optional but recommended):**
 
    Install the [VS Code Tasks Extension](https://marketplace.visualstudio.com/items?itemName=actboy168.tasks) (`actboy168.tasks`) to enable quick access to start the app both locally and online using buttons in VS Code.
 
-6. **Start the development server:**
+7. **Start the development server:**
 
    Run the following command to start the development server:
 
