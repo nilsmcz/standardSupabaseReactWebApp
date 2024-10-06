@@ -55,7 +55,7 @@ All authentication and profile information is stored and managed in Redux, ensur
 
 2. **Install dependencies:**
 
-   Make sure you have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed, then run:
+   Make sure you have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed, then run npm install in **`app/`**:
 
    ```bash
    npm install
