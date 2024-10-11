@@ -28,7 +28,7 @@ In the `supabase/functions/` directory, you will find several custom edge functi
 
 - **deleteProfilePicture**: Deletes a user's profile picture from storage and removes the corresponding entries from the `user_profiles` table.
 - **getProfile**: Retrieves all entries for a user based on the user's ID from the `user_profiles` table.
-- **helloWorld**: A simple example function to demonstrate how Edge Functions work.
+- **setUpProfile**: Inserts a user entry into the user_profiles table based on the authenticated user's ID, ensuring the user is added if they don't already exist, and handles any potential database insertion conflicts.
 - **setProfilePicture**: Uploads a picture to the storage and stores the image ID and path in the `user_profiles` table for the user.
 
 Additional functions available:

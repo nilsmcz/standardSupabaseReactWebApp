@@ -1,7 +1,7 @@
 import { corsHeaders } from "../_shared/cors.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
-console.log(`Function "helloWorld" up and running!`);
+console.log(`Function "setUpProfile" up and running!`);
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
