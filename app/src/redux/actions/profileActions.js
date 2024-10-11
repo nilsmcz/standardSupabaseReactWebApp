@@ -15,3 +15,8 @@ export const updateProfilePicture = (profileData) => ({
 export const clearProfilePicture = () => ({
     type: 'CLEAR_PROFILE_PICTURE',
 });
+
+export const setProfileLoading = (loading) => ({
+    type: 'SET_PROFILE_LOADING',
+    payload: loading,
+});

@@ -1,4 +1,5 @@
 const initialAuthState = {
+    loading: false,
     user: null, // Speichert die Benutzerinformationen
     session: {
         accessToken: null,

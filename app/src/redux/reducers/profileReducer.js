@@ -1,4 +1,5 @@
 const initialProfileState = {
+    loading: false,
     profile_picture_url: null,
     profile_picture_path: null
 };
@@ -28,6 +29,11 @@ const profileReducer = (state = initialProfileState, action) => {
                 ...state,
                 profile_picture_url: null,
                 profile_picture_path: null
+            };
+        case 'SET_PROFILE_LOADING':
+            return {
+                ...state,
+                loading: action.payload
             };
         default:
             return state;

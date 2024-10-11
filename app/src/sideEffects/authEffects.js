@@ -1,4 +1,8 @@
 import { supabase } from "../supabase/supabase";
+import store from '../redux/store';
+import { setProfileLoading } from "../redux/actions/profileActions";
+import { checkAuthSession } from "../utils";
+const { dispatch } = store;
 
 /**
  * Registers a new user with the provided email and password.
@@ -12,11 +16,25 @@ import { supabase } from "../supabase/supabase";
  */
 export async function registerWithEmailPassword(email, password) {
     try {
-        const { data, error } = await supabase.auth.signUp({ email, password });
-        if (error) {
-            throw error;
+        dispatch(setProfileLoading(true));
+
+        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({ email, password });
+        if (signUpError) {
+            throw signUpError;
         }
-        return data;
+
+        const accessToken = checkAuthSession();
+
+        const { data: funcData, error: funcError } = await supabase.functions.invoke('helloWorld', {
+            body: JSON.stringify({ email }),
+            headers: { Authorization: `Bearer ${accessToken}` }
+        });
+        if(funcError) {
+            throw funcError;
+        }
+        
+        dispatch(setProfileLoading(false));
+        return signUpData;
     } catch (error) {
         throw error;
     }
