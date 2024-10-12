@@ -25,7 +25,7 @@ export async function registerWithEmailPassword(email, password) {
 
         const accessToken = checkAuthSession();
 
-        const { data: funcData, error: funcError } = await supabase.functions.invoke('setUpProfile', {
+        const { data: funcData, error: funcError } = await supabase.functions.invoke('createProfile', {
             body: JSON.stringify({ email }),
             headers: { Authorization: `Bearer ${accessToken}` }
         });

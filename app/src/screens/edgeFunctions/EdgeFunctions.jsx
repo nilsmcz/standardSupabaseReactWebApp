@@ -9,7 +9,7 @@ export default function EdgeFunctions() {
     const accessToken = session?.accessToken;
 
     async function callHello() {
-        const { data, error } = await supabase.functions.invoke('setUpProfile', {
+        const { data, error } = await supabase.functions.invoke('createProfile', {
             body: JSON.stringify({ name: "Nils", number: 10 }),
             headers: { Authorization: `Bearer ${accessToken}` }
         });
@@ -37,7 +37,7 @@ export default function EdgeFunctions() {
     return (
         <div style={styles.container}>
             <h1>{t('edge_functions')}</h1>
-            <button onClick={() => callHello()}>{t('test_edge_function')}: setUpProfile</button>
+            <button onClick={() => callHello()}>{t('test_edge_function')}: createProfile</button>
             <button onClick={() => registerUserWithProfile()}>{t('test_edge_function')}: registerUserWithProfile</button>
         </div>
     );
