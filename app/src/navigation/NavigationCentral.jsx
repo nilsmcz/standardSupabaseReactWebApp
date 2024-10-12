@@ -14,6 +14,7 @@ import ChangePhonenumber from '../screens/settings/changePhoneNumber/ChangePhone
 import ChangeProfilePicture from '../screens/settings/changeProfilePicture/ChangeProfilePicture';
 import EdgeFunctions from '../screens/edgeFunctions/EdgeFunctions';
 import ProfileLoading from '../screens/auth/profileLoading/ProfileLoading';
+import DeleteAccount from '../screens/settings/deleteAccount/DeleteAccount';
 
 export default function NavigationCentral() {
 
@@ -35,6 +36,7 @@ export default function NavigationCentral() {
                         <Route path="/change-phone" element={<ChangePhonenumber />} />
                         <Route path="/change-profilepicture" element={<ChangeProfilePicture />} />
                         <Route path="/edge-functions" element={<EdgeFunctions />} />
+                        <Route path="/delete-account" element={<DeleteAccount />} />
 
                         <Route path="/*" element={<Home />} />
                     </> : <>

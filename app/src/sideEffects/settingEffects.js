@@ -1,8 +1,10 @@
 import { supabase } from "../supabase/supabase";
 import { v4 as uuidv4 } from 'uuid';
 import store from '../redux/store';
-import { updateProfilePicture, clearProfilePicture } from "../redux/actions/profileActions";
+import { updateProfilePicture, clearProfilePicture, clearProfile } from "../redux/actions/profileActions";
 import { checkAuthSession } from "../utils";
+import { clearAuthUser } from "../redux/actions/authActions";
+import { logout } from "./authEffects";
 const { dispatch } = store;
 /**
  * Updates the user's email address.
@@ -10,6 +12,7 @@ const { dispatch } = store;
  * This function changes the user's email to the provided new email address.
  * It interacts with Supabase's authentication system to update the email.
  *
+ * @async
  * @param {string} newEmail - The new email address to set for the user.
  * @returns {Promise<Object>} - Returns the updated user data if the email change is successful.
  * @throws {Error} - Throws an error if the email update fails for any reason.
@@ -32,6 +35,7 @@ export async function changeEmail(newEmail) {
  * This function first authenticates the user using their email and old password.
  * If the authentication is successful, the password is then updated to the new one.
  *
+ * @async
  * @param {string} email - The email address of the user.
  * @param {string} oldPassword - The user's current password.
  * @param {string} newPassword - The new password to set for the user.
@@ -67,6 +71,7 @@ export async function changePassword(email, oldPassword, newPassword) {
  * Note: To ensure this function works properly, the SMS provider must be enabled 
  * in Supabase, as phone number verification typically occurs via SMS.
  *
+ * @async
  * @param {string} newPhoneNumber - The new phone number to be set for the user.
  * @returns {Object} The updated user data if the phone number change is successful.
  * @throws Will throw an error if the update fails.
@@ -93,6 +98,7 @@ export async function changePhoneNumber(newPhoneNumber) {
  * authentication, and the Redux store is updated with the new profile picture
  * upon success.
  *
+ * @async
  * @param {File} file - The new profile picture file to be uploaded. Must be an image file.
  * @returns {Promise<Object>} - Returns the response data from the Supabase function if successful.
  * @throws {Error} - Throws an error if the access token is missing, the file is missing, or the upload fails.
@@ -136,6 +142,7 @@ export async function changeProfilePicture(file) {
  * It requires a valid access token for authorization and updates the Redux store
  * by clearing the profile picture from the local state.
  *
+ * @async
  * @returns {Promise<Object>} - Returns the response data from the Supabase function if successful.
  * @throws {Error} - Throws an error if the access token is missing or if the profile picture deletion fails.
  */
@@ -154,6 +161,39 @@ export async function deleteProfilePicture() {
         dispatch(clearProfilePicture())
 
         return data
+    } catch (error) {
+        throw error;
+    }
+}
+
+/**
+ * Deletes the user's account permanently.
+ *
+ * This function invokes a Supabase function to perform a hard delete of the user's account.
+ * It requires a valid access token to authorize the action and logs the user out
+ * upon successful account deletion. Additionally, the Redux store's authentication
+ * state is cleared.
+ *
+ * @async
+ * @function deleteAccount
+ * @returns {Promise<Object>} - Returns the response data from the Supabase function if the account deletion is successful.
+ * @throws {Error} - Throws an error if the access token is missing or if the deletion process fails.
+ */
+export async function deleteAccount() {
+    const accessToken = checkAuthSession();
+
+    try{
+        const { data, error } = await supabase.functions.invoke('deleteAccount', {
+            headers: { Authorization: `Bearer ${accessToken}` }
+        });
+
+        if (error) {
+            throw error;
+        }
+
+        logout();
+
+        return data;
     } catch (error) {
         throw error;
     }

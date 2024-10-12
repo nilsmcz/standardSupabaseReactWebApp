@@ -41,6 +41,8 @@
   "upload": "Hochladen",
   "delete": "Löschen",
 
+  "delete_account": "Konto löschen",
+
   "edge_functions": "Edge Functions",
   "test_edge_function": "Edge Function testen",
 

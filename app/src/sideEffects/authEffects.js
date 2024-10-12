@@ -1,7 +1,8 @@
 import { supabase } from "../supabase/supabase";
 import store from '../redux/store';
-import { setProfileLoading } from "../redux/actions/profileActions";
+import { clearProfile, setProfileLoading } from "../redux/actions/profileActions";
 import { checkAuthSession } from "../utils";
+import { clearAuthUser } from "../redux/actions/authActions";
 const { dispatch } = store;
 
 /**
@@ -74,6 +75,10 @@ export async function logout() {
         if (error) {
             throw error;
         }
+
+        dispatch(clearProfile());
+        dispatch(clearAuthUser());
+
         return true
     } catch (error) {
         throw error;
