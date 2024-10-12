@@ -13,16 +13,20 @@ import ChangePassword from '../screens/settings/changePassword/ChangePassword';
 import ChangePhonenumber from '../screens/settings/changePhoneNumber/ChangePhonenumber';
 import ChangeProfilePicture from '../screens/settings/changeProfilePicture/ChangeProfilePicture';
 import EdgeFunctions from '../screens/edgeFunctions/EdgeFunctions';
+import ProfileLoading from '../screens/auth/profileLoading/ProfileLoading';
 
 export default function NavigationCentral() {
 
     const auth = useSelector(state => state.auth.user);
+    const isProfileLoading = useSelector(state => state.profile.loading);
 
     return (
         <BrowserRouter>
             <Routes>
                 {auth ?
                     <>
+                        {isProfileLoading && <Route path="/*" element={<ProfileLoading />} />}
+
                         <Route path="/" element={<Home />} />
 
                         {/* Settings */}
